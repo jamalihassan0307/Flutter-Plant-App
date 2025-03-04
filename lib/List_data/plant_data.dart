@@ -1,4 +1,4 @@
-import 'package:ui_13/data/plant_model.dart';
+import 'package:ui_13/List_data/plant_model.dart';
 
 List<Plants> plants = [
   Plants(

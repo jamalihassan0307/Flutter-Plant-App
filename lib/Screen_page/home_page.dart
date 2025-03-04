@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ui_13/core/color.dart';
-import 'package:ui_13/data/category_model.dart';
-import 'package:ui_13/data/plant_data.dart';
-import 'package:ui_13/page/details_page.dart';
+import 'package:ui_13/const/color.dart';
+import 'package:ui_13/List_data/category_model.dart';
+import 'package:ui_13/List_data/plant_data.dart';
+import 'package:ui_13/Screen_page/details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

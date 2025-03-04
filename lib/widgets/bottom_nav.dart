@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ui_13/core/color.dart';
-import 'package:ui_13/data/bottom_menu.dart';
-import 'package:ui_13/page/home_page.dart';
+import 'package:ui_13/const/color.dart';
+import 'package:ui_13/List_data/bottom_menu.dart';
+import 'package:ui_13/Screen_page/home_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);

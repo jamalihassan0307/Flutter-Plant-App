@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_13/core/color.dart';
-import 'package:ui_13/data/plant_model.dart';
+import 'package:ui_13/List_data/plant_model.dart';
+import 'package:ui_13/const/color.dart';
 
 class DetailsPage extends StatelessWidget {
   final Plants plant;
