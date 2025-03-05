@@ -3,6 +3,7 @@ import 'package:ui_13/const/color.dart';
 import 'package:ui_13/List_data/bottom_menu.dart';
 import 'package:ui_13/Screen_page/home_page.dart';
 import 'package:ui_13/Screen_page/plant_details_page.dart';
+import 'package:ui_13/Screen_page/favorites_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -14,6 +15,10 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   PageController pageController = PageController();
   int selectIndex = 0;
+
+  // Sample list of favorite plants
+  List<String> favoritePlants = ['Aloe Vera', 'Snake Plant'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +68,7 @@ List<Widget> child = [
     plantDescription:
         'Aloe Vera is a succulent plant species of the genus Aloe. It is widely distributed and cultivated for commercial products, mainly as a topical treatment.',
   ),
+  const FavoritesPage(favoritePlants: ['Aloe Vera', 'Snake Plant']),
   Container(color: white),
   Container(color: white),
 ];
