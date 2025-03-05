@@ -57,7 +57,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 List<Widget> child = [
   const HomePage(),
-  const PlantDetailsPage(plantName: 'Aloe Vera'),
+  const PlantDetailsPage(
+    plantName: 'Aloe Vera',
+    plantImage: 'assets/images/aloe_vera.png',
+    plantDescription:
+        'Aloe Vera is a succulent plant species of the genus Aloe. It is widely distributed and cultivated for commercial products, mainly as a topical treatment.',
+  ),
   Container(color: white),
   Container(color: white),
 ];
