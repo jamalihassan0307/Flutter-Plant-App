@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui_13/const/color.dart';
 import 'package:ui_13/List_data/bottom_menu.dart';
 import 'package:ui_13/Screen_page/home_page.dart';
+import 'package:ui_13/Screen_page/plant_details_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 List<Widget> child = [
   const HomePage(),
-  Container(color: white),
+  const PlantDetailsPage(plantName: 'Aloe Vera'),
   Container(color: white),
   Container(color: white),
 ];
