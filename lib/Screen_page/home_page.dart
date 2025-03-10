@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
               ],
               borderRadius: BorderRadius.circular(10.0),
               image: const DecorationImage(
-                image: AssetImage('assets/images/pro.png'),
+                image: AssetImage('assets/images/profile.jpg'),
               ),
             ),
           ),
@@ -63,8 +63,7 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
               child: Row(
                 children: [
                   Container(
@@ -143,9 +142,7 @@ class _HomePageState extends State<HomePage> {
                           Text(
                             categories[i].name,
                             style: TextStyle(
-                              color: selectId == i
-                                  ? green
-                                  : black.withOpacity(0.7),
+                              color: selectId == i ? green : black.withOpacity(0.7),
                               fontSize: 16.0,
                             ),
                           ),
