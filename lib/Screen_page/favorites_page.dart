@@ -1,27 +1,158 @@
 import 'package:flutter/material.dart';
+import 'package:ui_13/const/color.dart';
+import 'package:ui_13/List_data/plant_data.dart';
+import 'package:ui_13/Screen_page/details_page.dart';
 
 class FavoritesPage extends StatelessWidget {
-  final List<String> favoritePlants;
-
-  const FavoritesPage({Key? key, required this.favoritePlants}) : super(key: key);
+  const FavoritesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final favoritePlants = plants.where((plant) => plant.isFavorit).toList();
+
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
-        title: Text('Favorites'),
+        backgroundColor: white,
+        elevation: 0,
+        title: const Text(
+          'My Favorites',
+          style: TextStyle(
+            color: black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search, color: black),
+            onPressed: () {
+              // Implement search functionality
+            },
+          ),
+        ],
       ),
       body: favoritePlants.isEmpty
-          ? Center(child: Text('No favorite plants added yet.'))
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.favorite_border,
+                    size: 80,
+                    color: grey.withOpacity(0.5),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'No favorite plants yet',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: black.withOpacity(0.7),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Start adding plants to your favorites',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: grey,
+                    ),
+                  ),
+                ],
+              ),
+            )
           : ListView.builder(
+              padding: const EdgeInsets.all(16),
               itemCount: favoritePlants.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(favoritePlants[index]),
-                  // You can add more details or a navigation to the plant details page
+                final plant = favoritePlants[index];
+                return GestureDetector(
                   onTap: () {
-                    // Navigate to the plant details page if needed
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailsPage(plant: plant),
+                      ),
+                    );
                   },
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      color: white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: black.withOpacity(0.1),
+                          blurRadius: 10,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: const BorderRadius.horizontal(
+                            left: Radius.circular(16),
+                          ),
+                          child: Image.asset(
+                            plant.imagePath,
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  plant.name,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  plant.category,
+                                  style: TextStyle(
+                                    color: grey,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '\$${plant.price.toStringAsFixed(2)}',
+                                      style: TextStyle(
+                                        color: green,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.favorite,
+                                        color: green,
+                                      ),
+                                      onPressed: () {
+                                        // Implement remove from favorites
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_13/Screen_page/sign_up_page.dart';
 import 'package:ui_13/const/color.dart';
 import 'package:ui_13/widgets/bottom_nav.dart';
 
@@ -340,6 +341,12 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     TextButton(
                       onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpPage(),
+                          ),
+                        );
                         // Navigate to sign up page
                       },
                       style: TextButton.styleFrom(
