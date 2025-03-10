@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:ui_13/const/color.dart';
 import 'package:ui_13/widgets/bottom_nav.dart';
+import 'package:ui_13/Screen_page/sign_in_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -166,7 +167,12 @@ class WelcomePage extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              // Navigate to login page
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SignInPage(),
+                                ),
+                              );
                             },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.symmetric(horizontal: 8),
