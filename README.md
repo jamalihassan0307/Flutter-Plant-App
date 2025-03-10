@@ -121,3 +121,39 @@ A beautifully designed Flutter application for plant enthusiasts to browse, favo
 </table>
 
 ## �� Project Structure
+
+````lib/
+├── Screen_page/
+│ ├── home_page.dart
+│ ├── details_page.dart
+│ ├── favorites_page.dart
+│ └── settings_page.dart
+├── widgets/
+│ ├── app_drawer.dart
+│ └── bottom_nav.dart
+├── utils/
+│ ├── app_data.dart
+│ └── toast_helper.dart
+├── const/
+│ └── color.dart
+├── List_data/
+│ ├── plant_data.dart
+│ └── plant_model.dart
+└── main.dart```
+
+## 📱 Download APK
+
+You can download the latest version of the app from:
+[APK/app-armeabi-v7a-release.apk](APK/app-armeabi-v7a-release.apk)
+
+## 👨‍💻 Developer
+
+Developed by [Jam Ali Hassan](https://github.com/jamalihassan0307)
+
+---
+
+<p align="center">
+  Made with ❤️ using Flutter
+</p>
+
+````
