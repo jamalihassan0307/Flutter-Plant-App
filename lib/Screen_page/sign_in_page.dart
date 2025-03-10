@@ -36,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: size.height * 0.04),
-                
+
                 // Back button
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
@@ -53,9 +53,9 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-                
+
                 SizedBox(height: size.height * 0.04),
-                
+
                 // Sign In text
                 const Text(
                   'Sign In',
@@ -65,9 +65,9 @@ class _SignInPageState extends State<SignInPage> {
                     letterSpacing: 0.5,
                   ),
                 ),
-                
+
                 SizedBox(height: 12),
-                
+
                 // Subtitle
                 Text(
                   'Welcome back! Please enter your details',
@@ -77,9 +77,9 @@ class _SignInPageState extends State<SignInPage> {
                     height: 1.5,
                   ),
                 ),
-                
+
                 SizedBox(height: size.height * 0.06),
-                
+
                 // Email field
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -118,9 +118,9 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 24),
-                
+
                 // Password field
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,9 +154,7 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _obscurePassword
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
+                              _obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
                               color: green,
                             ),
                             onPressed: () {
@@ -172,9 +170,9 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 16),
-                
+
                 // Remember me and Forgot password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -208,7 +206,7 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ],
                     ),
-                    
+
                     // Forgot password
                     TextButton(
                       onPressed: () {
@@ -230,9 +228,9 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: size.height * 0.06),
-                
+
                 // Sign In button
                 GestureDetector(
                   onTap: () {
@@ -270,9 +268,9 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-                
+
                 SizedBox(height: 24),
-                
+
                 // Or continue with
                 Row(
                   children: [
@@ -300,9 +298,9 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 24),
-                
+
                 // Social login buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -310,7 +308,7 @@ class _SignInPageState extends State<SignInPage> {
                     // Google
                     _socialLoginButton(
                       onTap: () {},
-                      iconPath: 'assets/icons/google.png',
+                      iconPath: 'assets/icons/google.jpeg',
                     ),
                     SizedBox(width: 20),
                     // Apple
@@ -322,13 +320,13 @@ class _SignInPageState extends State<SignInPage> {
                     // Facebook
                     _socialLoginButton(
                       onTap: () {},
-                      iconPath: 'assets/icons/facebook.png',
+                      iconPath: 'assets/icons/facebook.jpeg',
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 32),
-                
+
                 // Don't have an account
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -358,7 +356,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ],
                 ),
-                
+
                 SizedBox(height: 16),
               ],
             ),
@@ -367,7 +365,7 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-  
+
   Widget _socialLoginButton({
     required VoidCallback onTap,
     required String iconPath,
@@ -391,4 +389,4 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-} 
+}
