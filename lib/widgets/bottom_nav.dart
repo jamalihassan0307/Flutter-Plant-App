@@ -4,6 +4,7 @@ import 'package:ui_13/List_data/bottom_menu.dart';
 import 'package:ui_13/Screen_page/home_page.dart';
 import 'package:ui_13/Screen_page/plant_details_page.dart';
 import 'package:ui_13/Screen_page/favorites_page.dart';
+import 'package:ui_13/Screen_page/settings_page.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -69,5 +70,5 @@ List<Widget> child = [
         'Aloe Vera is a succulent plant species of the genus Aloe. It is widely distributed and cultivated for commercial products, mainly as a topical treatment.',
   ),
   const FavoritesPage(),
-  Container(color: white),
+  const SettingsPage(),
 ];
