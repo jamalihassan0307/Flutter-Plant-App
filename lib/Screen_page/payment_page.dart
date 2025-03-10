@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_13/const/color.dart';
+import 'package:ui_13/Screen_page/success_page.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -119,4 +120,4 @@ class _PaymentPageState extends State<PaymentPage> {
       activeColor: green,
     );
   }
-} 
+}
