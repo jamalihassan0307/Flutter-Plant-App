@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ui_13/const/color.dart';
-import 'package:ui_13/Screen_page/checkout_page.dart';
-import 'package:ui_13/utils/app_data.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
