@@ -8,173 +8,270 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: white,
+      body: Stack(
+        children: [
+          // Plant Image
+          Container(
+            height: size.height * 0.5,
+            decoration: BoxDecoration(
+              color: lightGreen,
+              image: DecorationImage(
+                image: AssetImage(plant.imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+
+          // Content
+          SingleChildScrollView(
+            child: Column(
               children: [
+                SizedBox(height: size.height * 0.45),
                 Container(
-                  height: height / 2,
                   decoration: BoxDecoration(
-                    color: lightGreen,
+                    color: white,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(30),
+                    ),
                     boxShadow: [
                       BoxShadow(
-                        color: green.withOpacity(0.2),
-                        blurRadius: 15,
-                        offset: const Offset(0, 5),
+                        color: black.withOpacity(0.1),
+                        blurRadius: 30,
+                        offset: const Offset(0, -15),
                       ),
                     ],
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(60),
-                      bottomRight: Radius.circular(60),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage(plant.imagePath),
-                      fit: BoxFit.cover,
-                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          RichText(
-                            text: TextSpan(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                TextSpan(
-                                  text: plant.name,
-                                  style: TextStyle(
-                                    color: black.withOpacity(0.8),
+                                Text(
+                                  plant.name,
+                                  style: const TextStyle(
+                                    fontSize: 28,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 18.0,
                                   ),
                                 ),
-                                TextSpan(
-                                  text: '  (${plant.category} Plant)',
+                                const SizedBox(height: 8),
+                                Text(
+                                  plant.category,
                                   style: TextStyle(
-                                    color: black.withOpacity(0.5),
-                                    fontSize: 18.0,
+                                    color: grey,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
                             ),
-                          ),
-                          Container(
-                            height: 30.0,
-                            width: 30.0,
-                            padding: const EdgeInsets.all(8.0),
-                            decoration: BoxDecoration(
-                              color: green,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: green.withOpacity(0.2),
-                                  blurRadius: 15,
-                                  offset: const Offset(0, 5),
-                                ),
-                              ],
-                              borderRadius: BorderRadius.circular(8.0),
+                            Text(
+                              '\$${plant.price.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                color: green,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            child: Image.asset(
-                              'assets/icons/heart.png',
-                              color: white,
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 20.0),
-                      RichText(
-                        text: TextSpan(
-                          text: plant.description,
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+                        const Text(
+                          'Plant Care',
                           style: TextStyle(
-                            color: black.withOpacity(0.5),
-                            fontSize: 15.0,
-                            height: 1.4,
-                            letterSpacing: 0.5,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      Text(
-                        'Treatment',
-                        style: TextStyle(
-                          color: black.withOpacity(0.9),
-                          fontSize: 18.0,
-                          height: 1.4,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildCareItem(
+                              icon: Icons.water_drop_outlined,
+                              label: 'Water',
+                              value: '250ml',
+                            ),
+                            _buildCareItem(
+                              icon: Icons.thermostat_outlined,
+                              label: 'Temp',
+                              value: '20°C',
+                            ),
+                            _buildCareItem(
+                              icon: Icons.wb_sunny_outlined,
+                              label: 'Light',
+                              value: 'Direct',
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Image.asset('assets/icons/sun.png',
-                              color: black, height: 24.0),
-                          Image.asset('assets/icons/drop.png',
-                              color: black, height: 24.0),
-                          Image.asset('assets/icons/temperature.png',
-                              color: black, height: 24.0),
-                          Image.asset('assets/icons/up_arrow.png',
-                              color: black, height: 24.0),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back),
-                ),
-                Image.asset('assets/icons/cart.png',
-                    color: black, height: 40.0),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 50.0, vertical: 15.0),
-                decoration: BoxDecoration(
-                  color: green,
-                  boxShadow: [
-                    BoxShadow(
-                      color: green.withOpacity(0.3),
-                      blurRadius: 15,
-                      offset: const Offset(0, -5),
+                        const SizedBox(height: 24),
+                        const Text(
+                          'Description',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          plant.description,
+                          style: TextStyle(
+                            color: grey,
+                            fontSize: 16,
+                            height: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                      ],
                     ),
-                  ],
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(60),
                   ),
                 ),
-                child: Text(
-                  'Buy \$${plant.price.toStringAsFixed(0)}',
+              ],
+            ),
+          ),
+
+          // Top buttons
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildCircleButton(
+                    icon: Icons.arrow_back,
+                    onTap: () => Navigator.pop(context),
+                  ),
+                  _buildCircleButton(
+                    icon: Icons.favorite,
+                    onTap: () {
+                      // Implement favorite toggle
+                    },
+                    isActive: plant.isFavorit,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: white,
+          boxShadow: [
+            BoxShadow(
+              color: black.withOpacity(0.1),
+              blurRadius: 10,
+              offset: const Offset(0, -5),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: green.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                Icons.shopping_cart_outlined,
+                color: green,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Implement add to cart
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: green,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: const Text(
+                  'Add to Cart',
                   style: TextStyle(
-                    color: white.withOpacity(0.9),
-                    fontSize: 18.0,
-                    height: 1.4,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 0.5,
                   ),
                 ),
               ),
-            )
+            ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCareItem({
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: grey.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: green),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: TextStyle(
+              color: grey,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCircleButton({
+    required IconData icon,
+    required VoidCallback onTap,
+    bool isActive = false,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: white,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Icon(
+          icon,
+          color: isActive ? green : black,
         ),
       ),
     );
