@@ -3,6 +3,7 @@ import 'package:ui_13/const/color.dart';
 import 'package:ui_13/List_data/plant_data.dart';
 import 'package:ui_13/utils/app_data.dart';
 import 'package:ui_13/Screen_page/details_page.dart';
+import 'package:ui_13/Screen_page/payment_page.dart';
 import 'package:ui_13/utils/toast_helper.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -142,14 +143,35 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    IconButton(
-                                      icon: const Icon(Icons.favorite),
-                                      color: green,
-                                      onPressed: () {
-                                        AppData.toggleFavorite(plant.id);
-                                        ToastHelper.showSuccess('Removed from favorites');
-                                        setState(() {});
-                                      },
+                                    Row(
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => PaymentPage(plant: plant),
+                                              ),
+                                            );
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: green,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+                                          ),
+                                          child: const Text('Order Now'),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        IconButton(
+                                          icon: const Icon(Icons.favorite),
+                                          color: green,
+                                          onPressed: () {
+                                            AppData.toggleFavorite(plant.id);
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

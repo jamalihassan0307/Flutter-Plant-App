@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_13/List_data/plant_model.dart';
+import 'package:ui_13/Screen_page/payment_page.dart';
 import 'package:ui_13/const/color.dart';
 import 'package:ui_13/utils/app_data.dart';
 import 'package:ui_13/utils/toast_helper.dart';
@@ -185,27 +186,24 @@ class DetailsPage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: green.withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Icon(
-                      Icons.shopping_cart_outlined,
+                  Text(
+                    '\$${plant.price.toStringAsFixed(2)}',
+                    style: TextStyle(
                       color: green,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        if (!AppData.cartItems.contains(plant.id)) {
-                          AppData.addToCart(plant.id);
-                          ToastHelper.showSuccess('Added to cart');
-                        } else {
-                          ToastHelper.showError('Already in cart');
-                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PaymentPage(plant: plant),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: green,
@@ -214,11 +212,9 @@ class DetailsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Text(
-                        AppData.cartItems.contains(plant.id)
-                            ? 'In Cart'
-                            : 'Add to Cart - \$${plant.price.toStringAsFixed(2)}',
-                        style: const TextStyle(
+                      child: const Text(
+                        'Order Now',
+                        style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
