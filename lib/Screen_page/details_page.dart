@@ -154,9 +154,12 @@ class DetailsPage extends StatelessWidget {
                   _buildCircleButton(
                     icon: Icons.favorite,
                     onTap: () {
-                      // Implement favorite toggle
+                      AppData.toggleFavorite(plant.id);
+                      ToastHelper.showSuccess(AppData.favoritePlantIds.contains(plant.id)
+                          ? 'Added to favorites'
+                          : 'Removed from favorites');
                     },
-                    isActive: plant.isFavorit,
+                    isActive: AppData.favoritePlantIds.contains(plant.id),
                   ),
                 ],
               ),

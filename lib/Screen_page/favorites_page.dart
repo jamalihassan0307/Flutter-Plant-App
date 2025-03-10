@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ui_13/const/color.dart';
 import 'package:ui_13/List_data/plant_data.dart';
+import 'package:ui_13/utils/app_data.dart';
 import 'package:ui_13/Screen_page/details_page.dart';
+import 'package:ui_13/utils/toast_helper.dart';
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
   const FavoritesPage({Key? key}) : super(key: key);
 
   @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+  @override
   Widget build(BuildContext context) {
-    final favoritePlants = plants.where((plant) => plant.isFavorit).toList();
+    final favoritePlants = plants.where((plant) => AppData.favoritePlantIds.contains(plant.id)).toList();
 
     return Scaffold(
       backgroundColor: white,
@@ -136,12 +143,12 @@ class FavoritesPage extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
-                                      icon: Icon(
-                                        Icons.favorite,
-                                        color: green,
-                                      ),
+                                      icon: const Icon(Icons.favorite),
+                                      color: green,
                                       onPressed: () {
-                                        // Implement remove from favorites
+                                        AppData.toggleFavorite(plant.id);
+                                        ToastHelper.showSuccess('Removed from favorites');
+                                        setState(() {});
                                       },
                                     ),
                                   ],
