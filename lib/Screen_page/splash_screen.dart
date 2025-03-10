@@ -33,11 +33,11 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             // App logo
             Container(
-              height: 150,
-              width: 150,
+              height: 180,
+              width: 180,
               decoration: BoxDecoration(
                 color: white,
-                borderRadius: BorderRadius.circular(75),
+                borderRadius: BorderRadius.circular(90),
                 boxShadow: [
                   BoxShadow(
                     color: black.withOpacity(0.1),
@@ -48,9 +48,10 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               child: Center(
                 child: Image.asset(
-                  'assets/images/small plant.png',
-                  height: 100,
-                  width: 100,
+                  'assets/images/Palm Tree.png',
+                  height: 140,
+                  width: 140,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
