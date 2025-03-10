@@ -129,7 +129,7 @@ class SettingsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'John Doe',
+                  'Ali Hassan',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -137,7 +137,7 @@ class SettingsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'john.doe@example.com',
+                  'jamalihassan0307@gmail.com',
                   style: TextStyle(
                     color: grey,
                     fontSize: 14,
@@ -275,4 +275,4 @@ class SettingItem {
     this.onToggle,
     this.textColor,
   });
-} 
+}
