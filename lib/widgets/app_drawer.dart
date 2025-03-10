@@ -45,26 +45,10 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.shopping_cart_outlined),
-            title: const Text('My Cart'),
-            trailing: Container(
-              padding: const EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: green,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                AppData.cartItems.length.toString(),
-                style: const TextStyle(color: white),
-              ),
-            ),
+            leading: const Icon(Icons.favorite_outline),
+            title: const Text('My Favorites'),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CheckoutPage(),
-                ),
-              );
+              Navigator.pushNamed(context, '/favorites');
             },
           ),
           // Add more drawer items here
@@ -72,4 +56,4 @@ class AppDrawer extends StatelessWidget {
       ),
     );
   }
-} 
+}
