@@ -38,32 +38,9 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            icon: Stack(
-              children: [
-                const Icon(Icons.shopping_cart_outlined, color: black),
-                if (AppData.cartItems.isNotEmpty)
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    child: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: green,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        AppData.cartItems.length.toString(),
-                        style: const TextStyle(
-                          color: white,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-              ],
-            ),
+            icon: const Icon(Icons.favorite_border, color: black),
             onPressed: () {
-              Navigator.pushNamed(context, '/checkout');
+              Navigator.pushNamed(context, '/favorites');
             },
           ),
           const SizedBox(width: 8),
