@@ -68,7 +68,7 @@ List<Widget> child = [
     plantDescription:
         'Aloe Vera is a succulent plant species of the genus Aloe. It is widely distributed and cultivated for commercial products, mainly as a topical treatment.',
   ),
-  const FavoritesPage(favoritePlants: ['Aloe Vera', 'Snake Plant']),
+  const FavoritesPage(),
   Container(color: white),
   Container(color: white),
 ];
