@@ -46,10 +46,23 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.favorite_outline),
             title: const Text('My Favorites'),
             onTap: () {
-              Navigator.pushNamed(context, '/favorites');
+              // Navigator.pushNamed(context, '/favorites');
             },
           ),
-          // Add more drawer items here
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              // Navigator.pushNamed(context, '/settings');
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              // Navigator.pushNamed(context, '/logout');
+            },
+          ),
         ],
       ),
     );
