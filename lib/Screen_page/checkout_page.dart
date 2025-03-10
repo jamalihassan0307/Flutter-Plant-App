@@ -4,19 +4,16 @@ import 'package:ui_13/const/color.dart';
 import 'package:ui_13/List_data/plant_data.dart';
 import 'package:ui_13/utils/app_data.dart';
 import 'package:ui_13/Screen_page/payment_page.dart';
+import 'package:ui_13/utils/toast_helper.dart';
 
 class CheckoutPage extends StatelessWidget {
   const CheckoutPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final cartPlants = plants.where(
-      (plant) => AppData.cartItems.contains(plant.id)
-    ).toList();
-    
-    final total = cartPlants.fold<double>(
-      0, (sum, plant) => sum + plant.price
-    );
+    final cartPlants = plants.where((plant) => AppData.cartItems.contains(plant.id)).toList();
+
+    final total = cartPlants.fold<double>(0, (sum, plant) => sum + plant.price);
 
     return Scaffold(
       appBar: AppBar(
@@ -80,25 +77,28 @@ class CheckoutPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PaymentPage(),
-                        ),
-                      );
-                    },
+                    onPressed: cartPlants.isEmpty
+                        ? null
+                        : () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PaymentPage(),
+                              ),
+                            );
+                          },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: green,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      disabledBackgroundColor: grey.withOpacity(0.3),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        'Proceed to Payment',
-                        style: TextStyle(
+                        cartPlants.isEmpty ? 'Cart is Empty' : 'Proceed to Payment',
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -115,11 +115,16 @@ class CheckoutPage extends StatelessWidget {
   }
 }
 
-class CartItem extends StatelessWidget {
+class CartItem extends StatefulWidget {
   final Plants plant;
 
   const CartItem({Key? key, required this.plant}) : super(key: key);
 
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -141,7 +146,7 @@ class CartItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              plant.imagePath,
+              widget.plant.imagePath,
               width: 80,
               height: 80,
               fit: BoxFit.cover,
@@ -153,7 +158,7 @@ class CartItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  plant.name,
+                  widget.plant.name,
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -161,7 +166,7 @@ class CartItem extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '\$${plant.price.toStringAsFixed(2)}',
+                  '\$${widget.plant.price.toStringAsFixed(2)}',
                   style: TextStyle(
                     color: green,
                     fontWeight: FontWeight.bold,
@@ -174,12 +179,15 @@ class CartItem extends StatelessWidget {
             icon: const Icon(Icons.delete_outline),
             color: Colors.red,
             onPressed: () {
-              AppData.removeFromCart(plant.id);
-              // Rebuild UI
+              AppData.removeFromCart(widget.plant.id);
+              ToastHelper.showSuccess('Removed from cart');
+              if (mounted) {
+                setState(() {});
+              }
             },
           ),
         ],
       ),
     );
   }
-} 
+}

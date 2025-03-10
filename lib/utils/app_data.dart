@@ -1,3 +1,5 @@
+import 'package:ui_13/List_data/plant_data.dart';
+
 class AppData {
   static List<int> favoritePlantIds = [];
   static List<int> cartItems = [];
@@ -49,4 +51,4 @@ class AppData {
     clearCart();
     favoritePlantIds.clear();
   }
-} 
+}

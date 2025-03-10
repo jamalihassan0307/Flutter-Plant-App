@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui_13/List_data/plant_model.dart';
 import 'package:ui_13/const/color.dart';
+import 'package:ui_13/utils/app_data.dart';
+import 'package:ui_13/utils/toast_helper.dart';
 
 class DetailsPage extends StatelessWidget {
   final Plants plant;
@@ -160,57 +162,71 @@ class DetailsPage extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: white,
-          boxShadow: [
-            BoxShadow(
-              color: black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: const Offset(0, -5),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(12),
+
+          // Bottom buttons
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: green.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
+                color: white,
+                boxShadow: [
+                  BoxShadow(
+                    color: black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, -5),
+                  ),
+                ],
               ),
-              child: Icon(
-                Icons.shopping_cart_outlined,
-                color: green,
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: green.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart_outlined,
+                      color: green,
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (!AppData.cartItems.contains(plant.id)) {
+                          AppData.addToCart(plant.id);
+                          ToastHelper.showSuccess('Added to cart');
+                        } else {
+                          ToastHelper.showError('Already in cart');
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: green,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text(
+                        AppData.cartItems.contains(plant.id)
+                            ? 'In Cart'
+                            : 'Add to Cart - \$${plant.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Implement add to cart
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: green,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text(
-                  'Add to Cart',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
