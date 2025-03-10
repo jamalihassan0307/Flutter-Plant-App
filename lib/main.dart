@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'Screen_page/splash_page.dart';
+import 'package:ui_13/Screen_page/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,15 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Plant App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Gilroy',
+        primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const SafeArea(
-        child: SplashPage(),
-      ),
+      home: const SplashScreen(),
     );
   }
 }
